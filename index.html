@@ -14,10 +14,21 @@
 	function setSearchEngine(){
 	  const buttonSelected = document.querySelector('input[name=engine]:checked');	
 	  const form=document.getElementById("searchForm");
+	  const query=document.getElementById("search");
 
+	  const errorMessage=document.getElementById("error");
+	  if(query.value.trim()===''){
+		error.innerHTML="please enter the search";
+        event.preventDefault();
+	  }
+     else if(!buttonSelected){
+	  error.innerHTML="please select the search engine";
+	event.preventDefault();
+	} else{
 	let url =actions[buttonSelected.value];
 	form.action = url;
-     
+	
+	}
 	}
     window.addEventListener("load", function(){
 	  const form=document.getElementById("searchForm");
@@ -37,7 +48,7 @@
 	<input type="text" id="search" name="q"/>
 	<input type="radio" id="google" value="google" name="engine">
 	<label for="google" >Google</label>
-	<input type="radio"  id="DuckDuckGo" value="duckduckGo" name="engine">
+	<input type="radio"  id="DuckDuckGo" value="duckduckgo" name="engine">
 	<label for="DuckDuckGo" >DuckDuckGo</label>
 	<input type="radio" id="Bing"  value="bing" name="engine">
 	<label for="Bing" >Bing</label>
@@ -49,5 +60,8 @@
 	 
 
 	</form>
+	<div id="errorbox">
+		<p id="error"></p>
+	</div>
 
 </body>
